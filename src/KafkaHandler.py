@@ -14,10 +14,10 @@ class KafkaLoggingHandler(logging.Handler):
     def emit(self, record):
         # drop kafka logging to avoid infinite recursion
         # Or should I write them to a file ? (Grr.. there are too many of them too, so ignore) 
-        if record.name == 'kafka':
+        if record.name ==  'kafka':
             return
         try:
-            # use default formatting and then byte encode it
+            # use default formatting, this can be overiden by goibibo buckter format
             msg = self.format(record)
             msg = bytes(msg)
             # Keyed messages should be produced when ordering of message is important
