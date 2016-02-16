@@ -1,2 +1,2 @@
-python-kafka
+pykafka
 # numpy for testing
