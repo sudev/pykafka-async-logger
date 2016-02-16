@@ -1,17 +1,15 @@
 import logging
-import pdb 
 import time 
-import numpy 
 import sys
 sys.path.append('../src')
 import KafkaHandler as kl
 
-logger = logging.getLogger('spam_application')
+logger = logging.getLogger('test_application')
 logger.setLevel(logging.DEBUG)
 
-# Add the log message handler to the logger
+KAFKA_WRONG_HOST = ''
 # Lets give wrong kafka url and try what happens 
-handler = kl.KafkaLoggingHandler(hosts_list="10.70.45.47:9092", topic= "testLogger", batch_size=100, key="Hello")
+handler = kl.KafkaLoggingHandler(hosts_list= KAFKA_WRONG_HOST, topic= "testLogger", batch_size=100, key="Hello")
 
 logger.addHandler(handler)
 
@@ -21,9 +19,4 @@ for i in range(200):
     t = time.time()
     logger.info('i = %d' % i)
     logger.debug('i = %d' % i)
-    latency.append(time.time() - t)
-
-nl = numpy.array(latency)
-print(numpy.mean(nl))
-print(numpy.std(nl))
 time.sleep(20)
