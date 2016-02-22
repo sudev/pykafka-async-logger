@@ -4,12 +4,17 @@ import sys
 sys.path.append('../src')
 import KafkaHandler as kl
 
+"""
+A very simple test case to test against functionality of this module. 
+Run the test files from test folder with first arugment as Kafka cluster url.
+"""
+
 logger = logging.getLogger('test_application')
 logger.setLevel(logging.DEBUG)
 
 KAFKA_HOST = sys.argv[1]
 # Add the log message handler to the logger
-handler = kl.KafkaLoggingHandler('backup.log', hosts_list=KAFKA_HOST, topic= "testLogger", batch_size=100, key="Hello")
+handler = kl.KafkaLoggingHandler('backup.log', hosts_list=KAFKA_HOST, topic= "testLogger", batch_size=100)
 
 logger.addHandler(handler)
 
