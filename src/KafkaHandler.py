@@ -8,7 +8,7 @@ class KafkaLoggingHandler(logging.Handler):
         logging.Handler.__init__(self)
         self.kafka_client = KafkaClient(hosts_list)
         self.topic = self.kafka_client.topics[topic]
-        self.key = bytes(key)
+        self.key = bytes(socket.gethostname())
         self.producer = self.topic.get_producer() 
 
     def emit(self, record):
