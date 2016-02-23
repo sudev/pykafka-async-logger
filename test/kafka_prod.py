@@ -13,13 +13,14 @@ logger = logging.getLogger('test_application')
 logger.setLevel(logging.DEBUG)
 
 KAFKA_HOST = sys.argv[1]
+print KAFKA_HOST
 # Add the log message handler to the logger
-handler = kl.KafkaLoggingHandler('backup.log', hosts_list=KAFKA_HOST, topic= "testLogger", batch_size=100)
+handler = kl.KafkaHandler('backup.log', hosts_list=KAFKA_HOST, topic= "testLogger", batch_size=100)
 
 logger.addHandler(handler)
 
 # Log some messages
-for i in range(200):
+for i in range(20000):
     t = time.time()
     logger.info('i = %d' % i)
 # Give some time for Kafka to create connection and produce
